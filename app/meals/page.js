@@ -1,7 +1,16 @@
+import { Suspense } from 'react'
 import Link from 'next/link'
+
 import classes from './page.module.css'
 import MealsGrid from '@/components/meals/MealsGrid'
+import { getMeals } from '@/lib/meals'
 
+const Meals = async () => {
+  const meals = await getMeals()
+  return <MealsGrid meals={meals} />
+}
+
+// Server compenent can be async.
 const MealsPage = () => {
   return (
     <>
@@ -18,7 +27,9 @@ const MealsPage = () => {
         </p>
       </header>
       <main className={classes.main}>
-        <MealsGrid meals={[]} />
+        <Suspense fallback={<p className={classes.loading}>Fetching...</p>}>
+          <Meals />
+        </Suspense>
       </main>
     </>
   )
