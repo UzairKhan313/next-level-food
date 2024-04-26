@@ -3,6 +3,18 @@ import classes from './page.module.css'
 import { getMealDetails } from '@/lib/meals'
 import { notFound } from 'next/navigation'
 
+// Genrating meta data for dunamic pages
+export const generateMetadata = async ({ params }) => {
+  const meal = getMealDetails(params.mealSlug)
+  if (!meal) {
+    notFound()
+  }
+  return {
+    title: meal.title,
+    description: meal.summary,
+  }
+}
+
 const MealDetailsPage = ({ params }) => {
   // Every page component have that param props which is object.
   const { mealSlug } = params
