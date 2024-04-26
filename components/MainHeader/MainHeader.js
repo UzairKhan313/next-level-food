@@ -4,6 +4,7 @@ import logo from '@/assets/logo.png'
 import classes from './mainHeader.module.css'
 import Image from 'next/image'
 import MainHeaderBackground from './MainHeaderBackground'
+import Navlink from './Navlink'
 
 // importing logo in next js is always object which hold src property.
 const MainHeader = () => {
@@ -18,10 +19,10 @@ const MainHeader = () => {
         <nav className={classes.nav}>
           <ul>
             <li>
-              <Link href="/meals">Browse Meal</Link>
+              <Navlink href="/meals">Browse Meal</Navlink>
             </li>
             <li>
-              <Link href="/community">Foodies Community</Link>
+              <Navlink href="/community">Foodies Community</Navlink>
             </li>
           </ul>
         </nav>
